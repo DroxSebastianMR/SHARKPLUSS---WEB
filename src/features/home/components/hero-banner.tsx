@@ -23,7 +23,7 @@ const featuredSlides = [
     bannerDescription:
       'Los Vengadores y sus aliados deben sacrificarlo todo para derrotar al poderoso Thanos antes de que su devastación ponga fin al universo.',
     bannerBackdrop:
-      'https://occ-0-8407-2219.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABSXkjVBCNDvLdzAmjwWg9LbomcmcnyQisro72AQbksdnLTdIXr8osmJktWeEg68CrOJW07XKRxoLyjaEbdFGRrrR9qg5-2utfVgf.jpg?r=8e1',
+      'https://w0.peakpx.com/wallpaper/93/158/HD-wallpaper-avengers-infinity-war-movie-imax-poster-avengers-infinity-war-infinity-war-hulk-thor-wanda-maximoff-winter-solider-vision-falcon-war-machine-spiderman-iron-man-captain-america-doctor-strange.jpg',
     description:
       'Una oceanógrafa descubre una señal imposible bajo el mar y deberá decidir cuánto está dispuesta a perder para revelar la verdad.',
     backdrop:
