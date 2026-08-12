@@ -1,5 +1,5 @@
 import { Bookmark, ChevronLeft, ChevronRight, Play, Volume2, VolumeX } from 'lucide-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { type PointerEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '@/app/router/paths';
 import { Button } from '@/components/ui/button';
@@ -60,6 +60,7 @@ export function HeroBanner() {
   const [isTrailerVisible, setIsTrailerVisible] = useState(false);
   const [isSoundEnabled, setIsSoundEnabled] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const swipeRef = useRef<{ pointerId: number; startX: number } | null>(null);
   const activeSlide = featuredSlides[activeIndex];
   const embedUrl = useMemo(() => {
     return `https://www.youtube-nocookie.com/embed/${activeSlide.trailerId}?autoplay=1&mute=1&controls=0&modestbranding=1&playsinline=1&loop=1&playlist=${activeSlide.trailerId}&rel=0&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1`;
@@ -73,6 +74,21 @@ export function HeroBanner() {
   const changeSlide = (direction: 1 | -1) => {
     setIsTrailerVisible(false);
     setActiveIndex((current) => (current + direction + featuredSlides.length) % featuredSlides.length);
+  };
+
+  const handlePointerDown = (event: PointerEvent<HTMLElement>) => {
+    swipeRef.current = { pointerId: event.pointerId, startX: event.clientX };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerUp = (event: PointerEvent<HTMLElement>) => {
+    const swipe = swipeRef.current;
+    swipeRef.current = null;
+    if (!swipe || swipe.pointerId !== event.pointerId) return;
+
+    const distance = event.clientX - swipe.startX;
+    if (Math.abs(distance) < 48) return;
+    changeSlide(distance < 0 ? 1 : -1);
   };
 
   const sendPlayerCommand = (func: 'mute' | 'unMute' | 'setVolume', args: number[] = []) => {
@@ -90,9 +106,16 @@ export function HeroBanner() {
   };
 
   return (
-    <section className="relative isolate min-h-[620px] overflow-hidden sm:min-h-[680px] lg:min-h-[720px] xl:min-h-[760px]">
+    <section
+      className="relative isolate min-h-[620px] touch-pan-y overflow-hidden sm:min-h-[680px] lg:min-h-[720px] xl:min-h-[760px]"
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={() => {
+        swipeRef.current = null;
+      }}
+    >
       <div
-        className={`absolute inset-0 -z-20 bg-cover bg-center transition-opacity duration-700 ${activeSlide.backdrop} ${isTrailerVisible ? 'opacity-0' : 'opacity-100'}`}
+        className={`absolute inset-0 -z-20 bg-cover bg-[position:50%_center] transition-opacity duration-700 sm:bg-center ${activeSlide.backdrop} ${isTrailerVisible ? 'opacity-0' : 'opacity-100'}`}
         style={
           activeSlide.bannerBackdrop ? { backgroundImage: `url("${activeSlide.bannerBackdrop}")` } : undefined
         }
@@ -122,7 +145,7 @@ export function HeroBanner() {
           <img
             src={activeSlide.logoUrl}
             alt="Avengers: Infinity War"
-            className="max-h-32 max-w-xl object-contain object-left sm:max-h-40"
+            className="max-h-16 max-w-[62vw] object-contain object-left sm:max-h-28 sm:max-w-md"
           />
         ) : (
           <h1 className="max-w-xl text-[42px] leading-[.88] font-black tracking-[-.06em] sm:text-7xl lg:text-8xl">
