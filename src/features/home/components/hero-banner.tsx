@@ -23,29 +23,31 @@ const featuredSlides = [
     bannerDescription:
       'Los Vengadores y sus aliados deben sacrificarlo todo para derrotar al poderoso Thanos antes de que su devastación ponga fin al universo.',
     bannerBackdrop:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdv410eKMp1TmNurIZLhTsrcOOMzp0Q_EWo40MiNpa5YUUBFNzfoi1hdA&s=10',
+      'https://occ-0-8407-2219.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABSXkjVBCNDvLdzAmjwWg9LbomcmcnyQisro72AQbksdnLTdIXr8osmJktWeEg68CrOJW07XKRxoLyjaEbdFGRrrR9qg5-2utfVgf.jpg?r=8e1',
     description:
       'Una oceanógrafa descubre una señal imposible bajo el mar y deberá decidir cuánto está dispuesta a perder para revelar la verdad.',
     backdrop:
       "bg-[url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=2200&q=85')]",
   },
   {
-    id: 'nuevo-destacado',
+    id: 'love-simon',
     trailerId: 'ykHeGtN4m94',
     videoFit: 'cover',
-    eyebrow: 'ESTRENO EXCLUSIVO',
+    eyebrow: '20TH CENTURY STUDIOS',
     logoUrl: undefined,
     bannerDescription: undefined,
-    bannerBackdrop: undefined,
+    bannerBackdrop:
+      'https://occ-0-8407-2219.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABSXkjVBCNDvLdzAmjwWg9LbomcmcnyQisro72AQbksdnLTdIXr8osmJktWeEg68CrOJW07XKRxoLyjaEbdFGRrrR9qg5-2utfVgf.jpg?r=8e1',
     title: (
       <>
-        UNA NUEVA
+        LOVE,
         <br />
-        <span className="text-cyan-300">HISTORIA</span>
+        <span className="text-cyan-300">SIMON</span>
       </>
     ),
-    meta: ['2026', '13+', 'Película', 'Suspenso'],
-    description: 'Una historia que cambiará todo. Descubre el próximo destacado de SharkPluss.',
+    meta: ['2018', '13+', '1 h 49 min', 'Comedia · Drama'],
+    description:
+      'Simon Spier aún no le ha contado a su familia y amigos que es gay, ni sabe quién es el compañero anónimo del que se ha enamorado en línea.',
     backdrop:
       "bg-[url('https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=2200&q=85')]",
   },
