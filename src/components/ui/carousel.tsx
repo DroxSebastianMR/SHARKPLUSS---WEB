@@ -4,7 +4,7 @@ import { createContext, type ComponentProps, type PropsWithChildren, useContext 
 import { cn } from '@/lib/utils';
 import { Button } from './button';
 
-type CarouselApi = UseEmblaCarouselType[1];
+type CarouselApi = UseEmblaCarouselType[1] | null;
 
 const CarouselContext = createContext<CarouselApi | null>(null);
 
@@ -31,9 +31,7 @@ export function CarouselItem({ className, ...props }: ComponentProps<'div'>) {
 }
 
 function useCarousel() {
-  const api = useContext(CarouselContext);
-  if (!api) throw new Error('Carousel navigation must be used inside Carousel.');
-  return api;
+  return useContext(CarouselContext);
 }
 
 export function CarouselPrevious({ className, ...props }: ComponentProps<typeof Button>) {
@@ -47,6 +45,7 @@ export function CarouselPrevious({ className, ...props }: ComponentProps<typeof 
         className,
       )}
       aria-label="Anterior"
+      disabled={!api}
       onClick={() => api?.scrollPrev()}
       {...props}
     >
@@ -66,6 +65,7 @@ export function CarouselNext({ className, ...props }: ComponentProps<typeof Butt
         className,
       )}
       aria-label="Siguiente"
+      disabled={!api}
       onClick={() => api?.scrollNext()}
       {...props}
     >
