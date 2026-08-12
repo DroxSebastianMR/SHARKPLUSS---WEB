@@ -4,7 +4,7 @@ import { catalogService } from '@/features/catalog/services/catalog.service';
 import { HeroBanner } from '@/features/home/components/hero-banner';
 import { toHomeCatalog } from '@/features/home/services/home-catalog.service';
 import type { HomeCatalog } from '@/features/home/types/home.types';
-import { getApiErrorMessage } from '@/lib/api-client';
+import { getApiErrorMessage } from '@/infrastructure/api/client/api-error';
 
 export function HomePage() {
   const [catalog, setCatalog] = useState<HomeCatalog | null>(null);

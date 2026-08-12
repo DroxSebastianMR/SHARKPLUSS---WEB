@@ -5,7 +5,7 @@ import { paths } from '@/app/router/paths';
 import { Button } from '@/components/ui/button';
 import { catalogService, type WatchMedia } from '@/features/catalog/services/catalog.service';
 import { VideoPlayer } from '@/features/player/components/video-player';
-import { getApiErrorMessage } from '@/lib/api-client';
+import { getApiErrorMessage } from '@/infrastructure/api/client/api-error';
 
 export function WatchPage() {
   const navigate = useNavigate();

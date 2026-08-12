@@ -1,4 +1,5 @@
-import { apiClient } from '@/lib/api-client';
+import { apiClient } from '@/infrastructure/api/client/api-client';
+import { API_ENDPOINTS } from '@/infrastructure/api/endpoints';
 
 export interface CatalogMedia {
   id: string;
@@ -17,11 +18,9 @@ export interface WatchMedia extends CatalogMedia {
 
 export const catalogService = {
   async list(signal?: AbortSignal) {
-    const { data } = await apiClient.get<CatalogMedia[]>('/catalog', { signal });
-    return data;
+    return apiClient.get<CatalogMedia[]>(API_ENDPOINTS.CATALOG.LIST, { signal });
   },
   async getBySlug(slug: string, signal?: AbortSignal) {
-    const { data } = await apiClient.get<WatchMedia>(`/catalog/${encodeURIComponent(slug)}`, { signal });
-    return data;
+    return apiClient.get<WatchMedia>(API_ENDPOINTS.CATALOG.DETAIL(slug), { signal });
   },
 };
